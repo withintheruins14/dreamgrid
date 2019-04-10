@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from "react-router-dom";
 import logo from './logo.svg';
+import contributions from './contributions.js';
 import './App.css';
-import Files from './Files.js';
+import DreamGrid from './DreamGrid.js';
 
 const dimensions = {
-  height: 300,
-  width: 600,
+  height: 400,
+  width: 900,
 };
-
-const contributions = { allIds: [], byId: {} };
 
 class App extends Component {
   render() {
@@ -22,10 +22,12 @@ class App extends Component {
             <br/>
             <i>respects image aspect ratios.</i>
           </p>
-          <Files
-            dimensions={dimensions}
-            contributions={contributions}
-          />
+          <BrowserRouter>
+            <DreamGrid
+              dimensions={dimensions}
+              contributions={contributions}
+            />
+          </BrowserRouter>
           <a
             className="App-link"
             href="https://reactjs.org"

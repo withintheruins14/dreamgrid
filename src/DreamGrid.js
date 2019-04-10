@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
+import { VariableSizeList as List } from 'react-window';
 import { Link } from 'react-router-dom';
-import ReactList from 'react-list';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
@@ -34,18 +34,17 @@ export class Files extends PureComponent {
     );
   }
 
-  renderItem = (index, key) => {
-    const { contributions, dimensions } = this.props;
-    let imageDimensions = this.makeDimensions();
-    let rows = this.makeRows([], imageDimensions);
+  renderItem = ({ data, index, style }) => {
+    const rows = data;
+    const { contributions } = this.props;
     return (
       <GridList
         cellHeight={rows[index].rowHeight}
-        key={key}
+        key={index}
         cols={rows[index].length}
         style={{ width: '100%', margin: '5px 0', justifyContent: 'space-evenly', alignItems: 'center' }}
       >
-        {rows[index].contents.map((content) => {
+        {rows[index].contents.map((content, i) => {
           const contribution = contributions.byId[parseInt(content.dimension.id, 10)];
           return (
             <GridListTile
@@ -57,7 +56,7 @@ export class Files extends PureComponent {
                 height: content.dimension.y * content.scale,
               }}
             >
-              {this.renderContents(content, key, index)}
+              {this.renderContents(content, i, index)}
             </GridListTile>
           );
         })
@@ -163,29 +162,38 @@ export class Files extends PureComponent {
     })
   }
 
+  getItemSize = index => this.rows[index].rowHeight;
+
   render() {
     const { contributions, dimensions } = this.props;
+    const { height, width } = dimensions;
     const imageDimensions = this.makeDimensions();
-    const rows = this.makeRows([], imageDimensions);
+    this.rows = this.makeRows([], imageDimensions);
     return (
       <div
         style={{
           overflow: 'auto',
-          maxHeight: dimensions.height,
-          height: dimensions.height,
-          width: dimensions.width,
+          maxHeight: height,
+          height,
+          width,
         }}
       >
-        <ReactList
-          itemRenderer={this.renderItem}
-          length={rows.length}
-          type='variable'
-          threshold={350}
-        />
+        <List
+          height={height}
+          width={width}
+          itemCount={this.rows.length}
+          itemSize={this.getItemSize}
+          itemData={this.rows}
+        >
+          {this.renderItem}
+        </List>
       </div>
     );
   }
 }
 
-
 export default (Files);
+
+const Row = ({ data, index, style }) => {
+  return data[index].contents.map();
+}

@@ -2,7 +2,7 @@
   "name": "DreamGrid",
   "description": "The ideal React image grid that respects image aspect ratios",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://withintheruins14.github.io/dreamgrid",
   "author": "Phillip Jacowski",
   "main": "./build/static/app.js",

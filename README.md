@@ -17,9 +17,6 @@ npm install --save DreamGrid
 
 Learn more at [https://withintheruins14.github.io/dreamgrid](https://withintheruins14.github.io/dreamgrid):
 
-## Related libraries
-
-## Frequently asked questions
 
 ## License
 

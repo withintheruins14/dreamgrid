@@ -1,5 +1,5 @@
 {
-  "name": "DreamGrid",
+  "name": "dreamgrid",
   "description": "The ideal React image grid that respects image aspect ratios",
   "version": "0.1.0",
   "private": false,

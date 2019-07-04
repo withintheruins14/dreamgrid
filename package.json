@@ -1,5 +1,6 @@
 {
   "name": "DreamGrid",
+  "description": "The ideal React image grid that respects image aspect ratios",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://withintheruins14.github.io/dreamgrid",
@@ -11,6 +12,10 @@
     "react-list": "^0.8.11",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/withintheruins14/dreamgrid"
   },
   "scripts": {
     "start": "react-scripts start",

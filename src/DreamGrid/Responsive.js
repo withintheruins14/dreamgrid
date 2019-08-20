@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import ReactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 import { VariableSizeList } from 'react-window';
 import Row from './Row';
 
@@ -12,11 +13,6 @@ export default class Responsive extends Component {
     maximumRowHeight = props.maximumRowHeight;
     this.list = createRef();
   }
-  //
-  // componentDidMount() {
-  //   console.log(this.list);
-  //     this.list.scrollToItem(this.rows.length+1);
-  // }
 
   componentDidUpdate(prevProps) {
     const { height, width } = this.props.size;
@@ -25,8 +21,8 @@ export default class Responsive extends Component {
     }
   }
 
-  dimension = (id, x, y) => {
-    return {id, x, y };
+  dimension = (x, y) => {
+    return { x, y };
   }
 
   scaleDimension = (dimension, scale) => {
@@ -58,7 +54,6 @@ export default class Responsive extends Component {
     const width = this.props.size.width;
   	let remainingRowWidth = width;
     let accumulatedRowDimensions = [];
-    let rowFull = false;
     while (remainingDimensions.length > 0 && remainingRowWidth > this.widthAtMinimumRowHeight(remainingDimensions[0])) {
       remainingRowWidth -= this.widthAtMinimumRowHeight(remainingDimensions[0]);
     	accumulatedRowDimensions.push(remainingDimensions.shift());
@@ -109,14 +104,13 @@ export default class Responsive extends Component {
   }
 
   makeDimensions = () => {
-    const { images, size } = this.props;
+    const { images } = this.props;
     return images.allIds.filter((id) => {
       const { width, height } = images.byId[id];
       return width && height;
     }).map((id) => {
-      const image = images.byId[id];
       const { x, y } = this.getImageDimensions(id);
-      return this.dimension(id, x, y);
+      return this.dimension(x, y);
     })
   }
 
@@ -125,22 +119,29 @@ export default class Responsive extends Component {
   };
 
   render() {
-    const { images, size, renderItem } = this.props;
-    const { height, width } = size;
+    const { images, renderItem } = this.props;
     const imageDimensions = this.makeDimensions();
     this.rows = this.makeRows([], imageDimensions);
     const itemData = { rows: this.rows, images, renderItem };
     return (
-      <VariableSizeList
-        height={height}
-        width={width}
-        itemData={itemData}
-        itemSize={this.getItemSize}
-        itemCount={this.rows.length}
-        ref={(node) => { return this.list = node; }}
-      >
-        {Row}
-      </VariableSizeList>
+      <ReactVirtualizedAutoSizer>
+        {
+          (sizes) => {
+            return (
+              <VariableSizeList
+                height={sizes.height}
+                width={sizes.width}
+                itemData={itemData}
+                itemSize={this.getItemSize}
+                itemCount={this.rows.length}
+                ref={(node) => { return this.list = node; }}
+              >
+                {Row}
+              </VariableSizeList>
+            );
+          }
+        }
+      </ReactVirtualizedAutoSizer>
     );
   }
 }

@@ -12,7 +12,7 @@ export default class DreamGrid extends Component {
     maximumRowHeight = props.maximumRowHeight;
     this.list = createRef();
   }
-  // 
+  //
   // componentDidMount() {
   //   console.log(this.list);
   //     this.list.scrollToItem(this.rows.length+1);
@@ -58,7 +58,6 @@ export default class DreamGrid extends Component {
     const width = this.props.size.width;
   	let remainingRowWidth = width;
     let accumulatedRowDimensions = [];
-    let rowFull = false;
     while (remainingDimensions.length > 0 && remainingRowWidth > this.widthAtMinimumRowHeight(remainingDimensions[0])) {
       remainingRowWidth -= this.widthAtMinimumRowHeight(remainingDimensions[0]);
     	accumulatedRowDimensions.push(remainingDimensions.shift());
@@ -109,12 +108,11 @@ export default class DreamGrid extends Component {
   }
 
   makeDimensions = () => {
-    const { images, size } = this.props;
+    const { images } = this.props;
     return images.allIds.filter((id) => {
       const { width, height } = images.byId[id];
       return width && height;
     }).map((id) => {
-      const image = images.byId[id];
       const { x, y } = this.getImageDimensions(id);
       return this.dimension(id, x, y);
     })

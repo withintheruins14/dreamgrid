@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 import { Link } from 'react-router-dom';
 import images from './images.js';
 import DreamGrid from './DreamGrid';
@@ -98,35 +97,26 @@ export default class HomePage extends Component {
             </header>
             <br />
             <div style={{ ...this.state.size }}>
-              <ReactVirtualizedAutoSizer>
-                {
-                  (sizes) => {
+                <DreamGrid
+                  images={images}
+                  minimumRowHeight={180}
+                  maximumRowHeight={350}
+                  responsive
+                  renderItem={(data, content, index, image) => {
                     return (
-                      <DreamGrid
-                        size={sizes}
-                        images={images}
-                        minimumRowHeight={180}
-                        maximumRowHeight={350}
-
-                        renderItem={(data, content, index, image) => {
-                          return (
-                            <img
-                                alt=""
-                                src={image.url}
-                                style={{
-                                    padding: 'unset',
-                                    width: content.dimension.x * content.scale,
-                                    height: content.dimension.y * content.scale,
-                                    // TODO spead height and width behind the scenes
-                                }}
-                            />
-                          );
-                        }}
+                      <img
+                          alt=""
+                          src={image.url}
+                          style={{
+                              padding: 'unset',
+                              width: content.dimension.x * content.scale,
+                              height: content.dimension.y * content.scale,
+                              // TODO spead height and width behind the scenes
+                          }}
                       />
                     );
-                  }
-                }
-              </ReactVirtualizedAutoSizer>
+                  }}
+                />
             </div>
           </div>
         </section>

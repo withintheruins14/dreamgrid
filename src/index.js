@@ -1,2 +1,2 @@
-import Static from './DreamGrid/Static';
+const Static = require('./DreamGrid/Static');
 exports.dreamgrid = Static;

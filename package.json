@@ -1,7 +1,7 @@
 {
   "name": "dreamgrid",
   "description": "The ideal React image grid that respects image aspect ratios",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "homepage": "https://withintheruins14.github.io/dreamgrid",
   "author": "Phillip Jacowski",
@@ -10,8 +10,8 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "babel-loader": "^8.0.6",
-    "react-window": "^1.8.5",
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "react-window": "^1.8.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

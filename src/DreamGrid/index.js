@@ -4,7 +4,7 @@ import Row from './Row';
 
 let minimumRowHeight, maximumRowHeight;
 
-export default class Static extends Component {
+export default class DreamGrid extends Component {
 
   constructor(props) {
     super(props);

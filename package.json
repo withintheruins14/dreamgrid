@@ -5,30 +5,29 @@
   "private": false,
   "homepage": "https://withintheruins14.github.io/dreamgrid",
   "author": "Phillip Jacowski",
-  "main": "./build/static/app.js",
+  "main": "./dist/main.js",
   "dependencies": {
-    "react": "^16.10.2",
-    "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8",
-    "react-window": "^1.8.5"
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "react-window": "^1.8.5",
+    "react": "^16.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/withintheruins14/dreamgrid"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-react": "^7.6.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
 }

@@ -1,2 +1,2 @@
-const Static = require('./DreamGrid/Static');
-exports.dreamgrid = Static;
+import dreamgrid from './DreamGrid';
+export default dreamgrid;

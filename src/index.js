@@ -33,8 +33,8 @@ export default class DreamGrid extends Component {
     }
   }
 
-  dimension = (x, y) => {
-    return { x, y }
+  dimension = (x, y, id) => {
+    return { x, y, id }
   }
 
   scaleDimension = (dimension, scale) => {
@@ -122,7 +122,7 @@ export default class DreamGrid extends Component {
       return width && height
     }).map((id) => {
       const { x, y } = this.getImageDimensions(id)
-      return this.dimension(x, y)
+      return this.dimension(x, y, id);
     })
   }
 

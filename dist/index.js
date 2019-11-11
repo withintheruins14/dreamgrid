@@ -288,7 +288,7 @@ DreamGrid.propTypes = {
   maximumRowHeight: PropTypes.number,
   size: PropTypes.objectOf(PropTypes.number),
   images: PropTypes.object,
-  renderItem: PropTypes.function
+  renderItem: PropTypes.func
 };
 
 module.exports = DreamGrid;

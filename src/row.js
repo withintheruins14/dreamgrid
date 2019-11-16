@@ -4,6 +4,10 @@ import { areEqual } from 'react-window'
 
 const Row = memo(({ data, index, style }) => {
   const { rows, images, renderItem } = data
+  const itemsBelowIndex = rows
+    .filter((_, i) => i < index)
+    .map(row => row.contents.length)
+    .reduce((a, b) => a + b, 0)
   return (
     <div
       key={index + rows[index].contents.length}
@@ -14,7 +18,9 @@ const Row = memo(({ data, index, style }) => {
     >
       {
         rows[index].contents.map((content, i) => {
-          return renderItem(data, content, index + i)
+          const id = images.allIds[(itemsBelowIndex + i)]
+          const image = images.byId[id]
+          return renderItem(content, image)
         })
       }
     </div>

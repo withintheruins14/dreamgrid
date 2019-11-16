@@ -72,6 +72,13 @@ var Row = memo(function (_ref) {
       images = data.images,
       renderItem = data.renderItem;
 
+  var itemsBelowIndex = rows.filter(function (_, i) {
+    return i < index;
+  }).map(function (row) {
+    return row.contents.length;
+  }).reduce(function (a, b) {
+    return a + b;
+  }, 0);
   return React.createElement(
     'div',
     {
@@ -81,8 +88,9 @@ var Row = memo(function (_ref) {
       })
     },
     rows[index].contents.map(function (content, i) {
-      var image = images.byId[content.dimension.id];
-      return renderItem(data, content, index + i, image);
+      var id = images.allIds[itemsBelowIndex + i];
+      var image = images.byId[id];
+      return renderItem(content, image);
     })
   );
 }, areEqual);

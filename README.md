@@ -25,14 +25,28 @@ const size = {
     width: 600
 };
 
-const images = {
-  allIds: [ 0, 1, 2 ],
-  byId: {
-    0: { id: 0, height: 679, width: 1024, url: 'https://live.staticflickr.com/7837/46852208034_1f768a633c_b_d.jpg' },
-    1: { id: 1, height: 1024, width: 679, url: 'https://live.staticflickr.com/7856/46660570565_dd7cb62cd0_b_d.jpg' },
-    2: { id: 1, height: 1024, width: 679, url: 'https://live.staticflickr.com/7856/46660570565_dd7cb62cd0_b_d.jpg' },
+// or pass dynamic dimensions for responsive behavior
+
+
+const images = [
+  {
+    height: 679,
+    width: 1024,
+    url: 'https://live.staticflickr.com/7837/46852208034_1f768a633c_b_d.jpg'
+  },
+  {
+    height: 1024,
+    width: 679,
+    url: 'https://live.staticflickr.com/7856/46660570565_dd7cb62cd0_b_d.jpg'
+  },
+  {
+    height: 1024,
+    width: 679,
+    url: 'https://live.staticflickr.com/7856/46660570565_dd7cb62cd0_b_d.jpg'
   }
 };
+
+// you can pass a ratio for height and width if you don't have them
 
 const renderItem = (content, image) => {
   return (
@@ -57,6 +71,8 @@ const renderItem = (content, image) => {
 />
 
 ```
+
+Sorry the API isn't great, still working on it when I can! Thanks
 
 Learn more at [https://withintheruins14.github.io/dreamgrid](https://withintheruins14.github.io/dreamgrid):
 

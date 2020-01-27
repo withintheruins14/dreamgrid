@@ -2,7 +2,6 @@ import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { VariableSizeList } from 'react-window'
 import Row from './row'
-// import styles from './styles.css'
 
 let minimumRowHeight, maximumRowHeight
 export default class DreamGrid extends Component {
@@ -20,11 +19,6 @@ export default class DreamGrid extends Component {
     maximumRowHeight = props.maximumRowHeight
     this.list = createRef()
   }
-  //
-  // componentDidMount() {
-  //   console.log(this.list);
-  //     this.list.scrollToItem(this.rows.length+1);
-  // }
 
   componentDidUpdate(prevProps) {
     const { height, width } = this.props.size
@@ -47,7 +41,7 @@ export default class DreamGrid extends Component {
   row = (unscaledContents, scaleDueToHeight) => {
     const width = this.props.size.width
     const scaledContents = unscaledContents.map(unscaledDimension => {
-      const factor = this.factorToFitInMinimumRowHeight(unscaledDimension) * scaleDueToHeight;
+      const factor = this.factorToFitInMinimumRowHeight(unscaledDimension) * scaleDueToHeight
       return this.scaleDimension(unscaledDimension, factor)
     })
 
@@ -67,13 +61,13 @@ export default class DreamGrid extends Component {
     let remainingRowWidth = width
     let accumulatedRowDimensions = []
     while (remainingDimensions.length > 0 && remainingRowWidth > this.widthAtMinimumRowHeight(remainingDimensions[0])) {
-      remainingRowWidth -= this.widthAtMinimumRowHeight(remainingDimensions[0]);
+      remainingRowWidth -= this.widthAtMinimumRowHeight(remainingDimensions[0])
       accumulatedRowDimensions.push(remainingDimensions.shift())
     }
 
-    const widthsAtMinimumHeight = accumulatedRowDimensions.map(d => this.widthAtMinimumRowHeight(d));
-    const totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce((a, b) => { return a + b; }, 0);
-    const widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
+    const widthsAtMinimumHeight = accumulatedRowDimensions.map(d => this.widthAtMinimumRowHeight(d))
+    const totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce((a, b) => { return a + b }, 0)
+    const widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight)
     return {
       next: this.row(accumulatedRowDimensions, widthScaleFactor),
       remaining: remainingDimensions
@@ -97,9 +91,7 @@ export default class DreamGrid extends Component {
     return minimumRowHeight / dimension.y
   }
 
-  getImageDimensions = (id) => {
-    const { images } = this.props
-    const image = images.byId[id]
+  getImageDimensions = (image) => {
     const { width, height } = image
     switch (image.image_orientation) {
       case 'LeftBottom':
@@ -117,11 +109,10 @@ export default class DreamGrid extends Component {
 
   makeDimensions = () => {
     const { images } = this.props
-    return images.allIds.filter((id) => {
-      const { width, height } = images.byId[id]
+    return images.filter(({ width, height }) => {
       return width && height
-    }).map((id) => {
-      const { x, y } = this.getImageDimensions(id)
+    }).map((image) => {
+      const { x, y } = this.getImageDimensions(image)
       return this.dimension(x, y)
     })
   }

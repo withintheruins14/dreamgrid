@@ -93,8 +93,7 @@ var Row = React.memo(function (_ref) {
       })
     },
     rows[index].contents.map(function (content, i) {
-      var id = images.allIds[itemsBelowIndex + i];
-      var image = images.byId[id];
+      var image = images[itemsBelowIndex + i];
       return renderItem(content, image);
     })
   );
@@ -105,8 +104,6 @@ Row.propTypes = {
   index: PropTypes.number,
   style: PropTypes.object
 };
-
-// import styles from './styles.css'
 
 var minimumRowHeight = void 0,
     maximumRowHeight = void 0;
@@ -192,10 +189,7 @@ var DreamGrid = function (_Component) {
       return minimumRowHeight / dimension.y;
     };
 
-    _this.getImageDimensions = function (id) {
-      var images = _this.props.images;
-
-      var image = images.byId[id];
+    _this.getImageDimensions = function (image) {
       var width = image.width,
           height = image.height;
 
@@ -216,14 +210,13 @@ var DreamGrid = function (_Component) {
     _this.makeDimensions = function () {
       var images = _this.props.images;
 
-      return images.allIds.filter(function (id) {
-        var _images$byId$id = images.byId[id],
-            width = _images$byId$id.width,
-            height = _images$byId$id.height;
+      return images.filter(function (_ref) {
+        var width = _ref.width,
+            height = _ref.height;
 
         return width && height;
-      }).map(function (id) {
-        var _this$getImageDimensi = _this.getImageDimensions(id),
+      }).map(function (image) {
+        var _this$getImageDimensi = _this.getImageDimensions(image),
             x = _this$getImageDimensi.x,
             y = _this$getImageDimensi.y;
 
@@ -240,11 +233,6 @@ var DreamGrid = function (_Component) {
     _this.list = React.createRef();
     return _this;
   }
-  //
-  // componentDidMount() {
-  //   console.log(this.list);
-  //     this.list.scrollToItem(this.rows.length+1);
-  // }
 
   createClass(DreamGrid, [{
     key: 'componentDidUpdate',

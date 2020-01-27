@@ -18,8 +18,7 @@ const Row = memo(({ data, index, style }) => {
     >
       {
         rows[index].contents.map((content, i) => {
-          const id = images.allIds[(itemsBelowIndex + i)]
-          const image = images.byId[id]
+          const image = images[itemsBelowIndex + i]
           return renderItem(content, image)
         })
       }

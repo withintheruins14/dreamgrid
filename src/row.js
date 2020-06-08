@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import PropTypes from 'prop-types'
 import { areEqual } from 'react-window'
 
 const Row = memo(({ data, index, style }) => {
@@ -24,12 +23,6 @@ const Row = memo(({ data, index, style }) => {
       }
     </div>
   )
-}, areEqual)
-
-Row.propTypes = {
-  data: PropTypes.object,
-  index: PropTypes.number,
-  style: PropTypes.object
-}
+}, areEqual);
 
 export default Row

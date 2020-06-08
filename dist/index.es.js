@@ -1,6 +1,6 @@
 import React, { memo, Component, createRef } from 'react';
-import PropTypes from 'prop-types';
 import { areEqual, VariableSizeList } from 'react-window';
+import PropTypes from 'prop-types';
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -94,14 +94,8 @@ var Row = memo(function (_ref) {
   );
 }, areEqual);
 
-Row.propTypes = {
-  data: PropTypes.object,
-  index: PropTypes.number,
-  style: PropTypes.object
-};
-
-var minimumRowHeight = void 0,
-    maximumRowHeight = void 0;
+var minimumRowHeight$1 = void 0,
+    maximumRowHeight$1 = void 0;
 
 var DreamGrid = function (_Component) {
   inherits(DreamGrid, _Component);
@@ -110,17 +104,6 @@ var DreamGrid = function (_Component) {
     classCallCheck(this, DreamGrid);
 
     var _this = possibleConstructorReturn(this, (DreamGrid.__proto__ || Object.getPrototypeOf(DreamGrid)).call(this, props));
-
-    _this.dimension = function (x, y) {
-      return { x: x, y: y };
-    };
-
-    _this.scaleDimension = function (dimension, scale) {
-      return {
-        dimension: dimension,
-        scale: scale
-      };
-    };
 
     _this.row = function (unscaledContents, scaleDueToHeight) {
       var width = _this.props.size.width;
@@ -137,7 +120,7 @@ var DreamGrid = function (_Component) {
 
       return {
         contents: scaledContents,
-        rowHeight: minimumRowHeight * scaleDueToHeight,
+        rowHeight: minimumRowHeight$1 * scaleDueToHeight,
         horizontalWhitespace: remainingWhitespace
       };
     };
@@ -157,7 +140,7 @@ var DreamGrid = function (_Component) {
       var totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce(function (a, b) {
         return a + b;
       }, 0);
-      var widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
+      var widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight$1 / minimumRowHeight$1);
       return {
         next: _this.row(accumulatedRowDimensions, widthScaleFactor),
         remaining: remainingDimensions
@@ -176,12 +159,12 @@ var DreamGrid = function (_Component) {
       return accumulatedRows;
     };
 
-    _this.widthAtMinimumRowHeight = function (dimension) {
-      return _this.factorToFitInMinimumRowHeight(dimension) * dimension.x;
+    _this.widthAtMinimumRowHeight = function (dimension$$1) {
+      return _this.factorToFitInMinimumRowHeight(dimension$$1) * dimension$$1.x;
     };
 
-    _this.factorToFitInMinimumRowHeight = function (dimension) {
-      return minimumRowHeight / dimension.y;
+    _this.factorToFitInMinimumRowHeight = function (dimension$$1) {
+      return minimumRowHeight$1 / dimension$$1.y;
     };
 
     _this.getImageDimensions = function (image) {
@@ -223,8 +206,8 @@ var DreamGrid = function (_Component) {
       return _this.rows[index].rowHeight;
     };
 
-    minimumRowHeight = props.minimumRowHeight;
-    maximumRowHeight = props.maximumRowHeight;
+    minimumRowHeight$1 = props.minimumRowHeight;
+    maximumRowHeight$1 = props.maximumRowHeight;
     _this.list = createRef();
     return _this;
   }
@@ -282,5 +265,5 @@ DreamGrid.propTypes = {
   renderItem: PropTypes.func
 };
 
-export default DreamGrid;
+export { DreamGrid as Grid };
 //# sourceMappingURL=index.es.js.map

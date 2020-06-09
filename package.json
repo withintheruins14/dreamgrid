@@ -1,6 +1,6 @@
 {
   "name": "dreamgrid",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "responsive react image grid component that respects aspect ratios",
   "author": "Phillip Jacowski",
   "license": "MIT",

@@ -1,5 +1,25 @@
 {
-  "name": "dreamgrid-example",
+  "name": "dreamgrid",
+  "version": "0.1.31",
+  "description": "responsive react image grid component that respects aspect ratios",
+  "author": "Phillip Jacowski",
+  "license": "MIT",
+  "keywords": [
+    "aspect ratio",
+    "grid",
+    "responsive",
+    "infinite",
+    "ratio",
+    "image",
+    "aspect ratio",
+    "masonry",
+    "scrolling",
+    "virtualized",
+    "masonry",
+    "react",
+    "reactjs"
+  ],
+  "homepage": "https://withintheruins14.github.io/dreamgrid",
   "repository": {
     "type": "git",
     "url": "https://github.com/withintheruins14/dreamgrid"

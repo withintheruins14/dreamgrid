@@ -1,25 +1,5 @@
 {
-  "name": "dreamgrid",
-  "version": "0.1.26",
-  "description": "responsive react image grid component that respects aspect ratios",
-  "author": "Phillip Jacowski",
-  "license": "MIT",
-  "keywords": [
-    "aspect ratio",
-    "grid",
-    "responsive",
-    "infinite",
-    "ratio",
-    "image",
-    "aspect ratio",
-    "masonry",
-    "scrolling",
-    "virtualized",
-    "masonry",
-    "react",
-    "reactjs"
-  ],
-  "homepage": "https://withintheruins14.github.io/dreamgrid",
+  "name": "dreamgrid-example",
   "repository": {
     "type": "git",
     "url": "https://github.com/withintheruins14/dreamgrid"
@@ -38,7 +18,7 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "x -d example/build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -63,7 +43,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^3.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",

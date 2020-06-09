@@ -1,15 +1,6 @@
 {
-  "main.css": "/dreamgrid/static/css/main.d3c34e23.chunk.css",
-  "main.js": "/dreamgrid/static/js/main.09ec6f20.chunk.js",
-  "main.js.map": "/dreamgrid/static/js/main.09ec6f20.chunk.js.map",
-  "runtime~main.js": "/dreamgrid/static/js/runtime~main.9d86a42f.js",
-  "runtime~main.js.map": "/dreamgrid/static/js/runtime~main.9d86a42f.js.map",
-  "static/css/2.7979ba7b.chunk.css": "/dreamgrid/static/css/2.7979ba7b.chunk.css",
-  "static/js/2.f8743ec0.chunk.js": "/dreamgrid/static/js/2.f8743ec0.chunk.js",
-  "static/js/2.f8743ec0.chunk.js.map": "/dreamgrid/static/js/2.f8743ec0.chunk.js.map",
-  "index.html": "/dreamgrid/index.html",
-  "precache-manifest.1c77c1e182cbed0ca213a589dfe1b808.js": "/dreamgrid/precache-manifest.1c77c1e182cbed0ca213a589dfe1b808.js",
-  "service-worker.js": "/dreamgrid/service-worker.js",
-  "static/css/2.7979ba7b.chunk.css.map": "/dreamgrid/static/css/2.7979ba7b.chunk.css.map",
-  "static/css/main.d3c34e23.chunk.css.map": "/dreamgrid/static/css/main.d3c34e23.chunk.css.map"
+  "main.css": "static/css/main.2ffa18d5.css",
+  "main.css.map": "static/css/main.2ffa18d5.css.map",
+  "main.js": "static/js/main.a4b1ea1d.js",
+  "main.js.map": "static/js/main.a4b1ea1d.js.map"
 }

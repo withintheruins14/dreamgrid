@@ -57,7 +57,7 @@ const renderItem = (content, image) => {
 ```
 
 
-# Hooks
+# Hooks (coming soon!)
 
 ```
 import { useGrid } from 'dreamgrid';

@@ -2,12 +2,6 @@
 
 > responsive react image grid component that respects aspect ratios
 
-|   | masonry | dreamgrid |
-|---|---|---|
-| preserves aspect ratios |   | ✅ |
-| allows variable item widths |   | ✅ |
-| deterministic |   | ✅ |
-
 [![NPM](https://img.shields.io/npm/v/dreamgrid.svg)](https://www.npmjs.com/package/dreamgrid) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
@@ -19,6 +13,12 @@ yarn add dreamgrid
 # NPM
 npm install --save dreamgrid
 ```
+
+|   | masonry | dreamgrid |
+|---|---|---|
+| preserves aspect ratios |   | ✅ |
+| allows variable item widths |   | ✅ |
+| deterministic |   | ✅ |
 
 ## Usage
 

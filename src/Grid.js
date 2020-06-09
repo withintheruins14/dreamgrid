@@ -2,7 +2,6 @@ import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { VariableSizeList } from 'react-window'
 import Row from './row'
-import { dimension, scaleDimension } from './utils';
 
 let minimumRowHeight, maximumRowHeight
 export default class DreamGrid extends Component {

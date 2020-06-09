@@ -103,10 +103,10 @@ var Row = React.memo(function (_ref) {
 
 var useGrid = function useGrid() {};
 
-var minimumRowHeight$1 = void 0,
-    maximumRowHeight$1 = void 0;
+var minimumRowHeight = void 0,
+    maximumRowHeight = void 0;
 
-var DreamGrid$1 = function (_Component) {
+var DreamGrid = function (_Component) {
   inherits(DreamGrid, _Component);
 
   function DreamGrid(props) {
@@ -129,7 +129,7 @@ var DreamGrid$1 = function (_Component) {
 
       return {
         contents: scaledContents,
-        rowHeight: minimumRowHeight$1 * scaleDueToHeight,
+        rowHeight: minimumRowHeight * scaleDueToHeight,
         horizontalWhitespace: remainingWhitespace
       };
     };
@@ -149,7 +149,7 @@ var DreamGrid$1 = function (_Component) {
       var totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce(function (a, b) {
         return a + b;
       }, 0);
-      var widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight$1 / minimumRowHeight$1);
+      var widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
       return {
         next: _this.row(accumulatedRowDimensions, widthScaleFactor),
         remaining: remainingDimensions
@@ -168,12 +168,12 @@ var DreamGrid$1 = function (_Component) {
       return accumulatedRows;
     };
 
-    _this.widthAtMinimumRowHeight = function (dimension$$1) {
-      return _this.factorToFitInMinimumRowHeight(dimension$$1) * dimension$$1.x;
+    _this.widthAtMinimumRowHeight = function (dimension) {
+      return _this.factorToFitInMinimumRowHeight(dimension) * dimension.x;
     };
 
-    _this.factorToFitInMinimumRowHeight = function (dimension$$1) {
-      return minimumRowHeight$1 / dimension$$1.y;
+    _this.factorToFitInMinimumRowHeight = function (dimension) {
+      return minimumRowHeight / dimension.y;
     };
 
     _this.getImageDimensions = function (image) {
@@ -215,8 +215,8 @@ var DreamGrid$1 = function (_Component) {
       return _this.rows[index].rowHeight;
     };
 
-    minimumRowHeight$1 = props.minimumRowHeight;
-    maximumRowHeight$1 = props.maximumRowHeight;
+    minimumRowHeight = props.minimumRowHeight;
+    maximumRowHeight = props.maximumRowHeight;
     _this.list = React.createRef();
     return _this;
   }
@@ -266,7 +266,7 @@ var DreamGrid$1 = function (_Component) {
   return DreamGrid;
 }(React.Component);
 
-DreamGrid$1.propTypes = {
+DreamGrid.propTypes = {
   minimumRowHeight: PropTypes.number,
   maximumRowHeight: PropTypes.number,
   size: PropTypes.objectOf(PropTypes.number),
@@ -275,5 +275,5 @@ DreamGrid$1.propTypes = {
 };
 
 exports.useGrid = useGrid;
-exports.Grid = DreamGrid$1;
+exports.Grid = DreamGrid;
 //# sourceMappingURL=index.js.map

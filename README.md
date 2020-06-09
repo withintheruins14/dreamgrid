@@ -1,6 +1,12 @@
-# DreamGrid
+# dreamgrid
 
-> The ideal image grid React component that respects image aspect ratios
+> responsive react image grid component that respects aspect ratios
+
+|   | masonry | dreamgrid |
+|---|---|---|
+| preserves aspect ratios |   | ✅ |
+| allows variable item widths |   | ✅ |
+| deterministic |   | ✅ |
 
 [![NPM](https://img.shields.io/npm/v/dreamgrid.svg)](https://www.npmjs.com/package/dreamgrid) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -16,22 +22,11 @@ npm install --save dreamgrid
 
 ## Usage
 
-
 ```
-import DreamGrid from 'dreamgrid'
-
-const size = {
-    height: 300,
-    width: 600
-};
-
-// or pass dynamic dimensions for responsive behavior
-
-
 const images = [
   {
-    height: 679,
-    width: 1024,
+    height: 679,          // you can pass a ratio for height and width if you don't have them
+    width: 1024,          // eg. { height: 2, width: 3 } or { height: 1, width: 1 }
     url: 'https://live.staticflickr.com/7837/46852208034_1f768a633c_b_d.jpg'
   },
   {
@@ -46,8 +41,6 @@ const images = [
   }
 };
 
-// you can pass a ratio for height and width if you don't have them
-
 const renderItem = (content, image) => {
   return (
     <img
@@ -61,18 +54,40 @@ const renderItem = (content, image) => {
     />
   );
 }
+```
 
-<DreamGrid
-    images={images}
-    size={size}
-    minimumRowHeight={180}
-    maximumRowHeight={350}
-    renderItem={renderItem}
-/>
+
+# Hooks
+
+```
+import { useGrid } from 'dreamgrid';
+
+const Grid = useGrid(
+  images,
+  size,
+  minimumRowHeight,
+  maximumRowHeight,
+  renderItem
+);
+
+return <Grid />;
 
 ```
 
-Sorry the API isn't great, still working on it when I can! Thanks
+# Component
+
+```
+import DreamGrid from 'dreamgrid'
+
+<DreamGrid
+  images={images}
+  size={{ height: 300, width: 600 }}
+  minimumRowHeight={180}
+  maximumRowHeight={350}
+  renderItem={renderItem}
+/>
+
+```
 
 Learn more at [https://withintheruins14.github.io/dreamgrid](https://withintheruins14.github.io/dreamgrid):
 

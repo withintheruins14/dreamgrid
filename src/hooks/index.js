@@ -41,3 +41,5 @@ export const DreamGrid = ({
     </VariableSizeList>
   )
 }
+
+export const useGrid = () => {};

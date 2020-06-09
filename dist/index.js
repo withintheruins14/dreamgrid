@@ -101,10 +101,12 @@ var Row = React.memo(function (_ref) {
   );
 }, reactWindow.areEqual);
 
+var useGrid = function useGrid() {};
+
 var minimumRowHeight$1 = void 0,
     maximumRowHeight$1 = void 0;
 
-var DreamGrid = function (_Component) {
+var DreamGrid$1 = function (_Component) {
   inherits(DreamGrid, _Component);
 
   function DreamGrid(props) {
@@ -264,7 +266,7 @@ var DreamGrid = function (_Component) {
   return DreamGrid;
 }(React.Component);
 
-DreamGrid.propTypes = {
+DreamGrid$1.propTypes = {
   minimumRowHeight: PropTypes.number,
   maximumRowHeight: PropTypes.number,
   size: PropTypes.objectOf(PropTypes.number),
@@ -272,5 +274,6 @@ DreamGrid.propTypes = {
   renderItem: PropTypes.func
 };
 
-exports.Grid = DreamGrid;
+exports.useGrid = useGrid;
+exports.Grid = DreamGrid$1;
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,4 @@
-import React, { memo, Component, createRef } from 'react';
+import React__default, { memo, Component, createRef } from 'react';
 import { areEqual, VariableSizeList } from 'react-window';
 import PropTypes from 'prop-types';
 
@@ -79,7 +79,7 @@ var Row = memo(function (_ref) {
   }).reduce(function (a, b) {
     return a + b;
   }, 0);
-  return React.createElement(
+  return React__default.createElement(
     'div',
     {
       key: index + rows[index].contents.length,
@@ -94,10 +94,12 @@ var Row = memo(function (_ref) {
   );
 }, areEqual);
 
+var useGrid = function useGrid() {};
+
 var minimumRowHeight$1 = void 0,
     maximumRowHeight$1 = void 0;
 
-var DreamGrid = function (_Component) {
+var DreamGrid$1 = function (_Component) {
   inherits(DreamGrid, _Component);
 
   function DreamGrid(props) {
@@ -238,7 +240,7 @@ var DreamGrid = function (_Component) {
       var imageDimensions = this.makeDimensions();
       this.rows = this.makeRows([], imageDimensions);
       var itemData = { rows: this.rows, images: images, renderItem: renderItem };
-      return React.createElement(
+      return React__default.createElement(
         VariableSizeList,
         {
           height: height,
@@ -257,7 +259,7 @@ var DreamGrid = function (_Component) {
   return DreamGrid;
 }(Component);
 
-DreamGrid.propTypes = {
+DreamGrid$1.propTypes = {
   minimumRowHeight: PropTypes.number,
   maximumRowHeight: PropTypes.number,
   size: PropTypes.objectOf(PropTypes.number),
@@ -265,5 +267,5 @@ DreamGrid.propTypes = {
   renderItem: PropTypes.func
 };
 
-export { DreamGrid as Grid };
+export { useGrid, DreamGrid$1 as Grid };
 //# sourceMappingURL=index.es.js.map

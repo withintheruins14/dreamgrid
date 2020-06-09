@@ -41,21 +41,9 @@ const images = [
   }
 };
 
-const renderItem = (content, image) => {
-  return (
-    <img
-      alt=""
-      src={image.url}
-      style={{
-          padding: 'unset',
-          width: content.dimension.x * content.scale,
-          height: content.dimension.y * content.scale,
-      }}
-    />
-  );
-}
-```
+const renderItem = (style, image) => (<img src={image.url} style={style} />);
 
+```
 
 # Hooks (coming soon!)
 
@@ -70,22 +58,24 @@ const Grid = useGrid(
   renderItem
 );
 
-return <Grid />;
+return (<Grid />);
 
 ```
 
 # Component
 
 ```
-import DreamGrid from 'dreamgrid'
+import DreamGrid from 'dreamgrid';
 
-<DreamGrid
-  images={images}
-  size={{ height: 300, width: 600 }}
-  minimumRowHeight={180}
-  maximumRowHeight={350}
-  renderItem={renderItem}
-/>
+return (
+  <DreamGrid
+    images={images}
+    size={{ height: 300, width: 600 }}
+    minimumRowHeight={180}
+    maximumRowHeight={350}
+    renderItem={renderItem}
+  />
+);
 
 ```
 

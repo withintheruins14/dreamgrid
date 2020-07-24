@@ -19,6 +19,8 @@ npm install --save dreamgrid
 | preserves aspect ratios |   | ✅ |
 | allows variable item widths |   | ✅ |
 | deterministic |   | ✅ |
+| virtualized |   | ✅ |
+| memoized |   | ✅ |
 
 ## Usage
 

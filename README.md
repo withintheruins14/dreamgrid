@@ -1,6 +1,6 @@
 # dreamgrid
 
-> responsive react image grid component that respects aspect ratios https://withintheruins14.github.io/dreamgrid:
+> responsive react image grid component that respects aspect ratios https://withintheruins14.github.io/dreamgrid
 
 [![NPM](https://img.shields.io/npm/v/dreamgrid.svg)](https://www.npmjs.com/package/dreamgrid) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 

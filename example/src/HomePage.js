@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Grid } from 'dreamgrid';
 import ReactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 import { Link } from 'react-router-dom';
 import images from './images.js';
-import DreamGrid from './DreamGrid';
 
 const mainStyles = {
   display: 'flex',
@@ -101,7 +101,7 @@ export default class HomePage extends Component {
               <ReactVirtualizedAutoSizer>
                 {(sizes) => {
                     return (
-                      <DreamGrid
+                      <Grid
                         size={sizes}
                         images={images}
                         minimumRowHeight={180}

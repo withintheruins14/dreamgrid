@@ -2456,9 +2456,10 @@ dotenv@4.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
   integrity sha1-hk7xN5rO1Vzm+V3r7NzhefegzR0=
 
-"dreamgrid@link:..":
-  version "0.0.0"
-  uid ""
+dreamgrid@0.1.36:
+  version "0.1.36"
+  resolved "https://registry.yarnpkg.com/dreamgrid/-/dreamgrid-0.1.36.tgz#27c1e6d6260a0ef202d7c525b11cf980ba9bdad2"
+  integrity sha512-XQvzJAJ/GMW79C5Ot2kKMRVza2z2ehsLddAxB96+w2UXkfffvNPH7u645hEFm3OnoEPf/ZjJG+OZ2rGbJz2lSg==
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -3345,7 +3346,7 @@ fsevents@~2.1.2:
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
-  integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmdreamgridTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
+  integrity "sha1-pWiZ0+o8m6uHS7l3O3xe3pL0iV0= sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
 
 functional-red-black-tree@^1.0.1:
   version "1.0.1"
@@ -5277,7 +5278,7 @@ mute-stream@0.0.7:
 nan@^2.12.1:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
-  integrity sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvdreamgridDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
+  integrity "sha1-174036MQW5FJTDFHCJMV7/iHSwE= sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw=="
 
 nanomatch@^1.2.9:
   version "1.2.13"

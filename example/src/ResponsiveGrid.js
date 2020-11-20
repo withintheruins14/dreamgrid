@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 import images from './images.js';
-import DreamGrid from './DreamGrid';
+import { Grid } from 'dreamgrid';
 
 import { responsiveGrid, mockData } from './dictionary.js';
 import PrismCode from 'react-prism';
@@ -22,7 +22,7 @@ export default () => {
           {
             (sizes) => {
               return (
-                <DreamGrid
+                <Grid
                   size={sizes}
                   images={images}
                   minimumRowHeight={180}

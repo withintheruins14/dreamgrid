@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import images from './images.js';
-import DreamGrid from './DreamGrid';
+import { Grid } from 'dreamgrid';
 import { staticGrid, staticGridHooks, mockData } from './dictionary.js';
 import PrismCode from 'react-prism';
 require('prismjs');
@@ -14,7 +14,7 @@ export default () => {
       <h5 style={{ position: 'sticky', top: 0, margin: 0, height: 50, display: 'flex', alignItems: 'center' }}>Static Grid</h5>
       <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ ...size, display: 'flex', flex: 1, alignSelf: 'flex-start', position: 'sticky', top: 50 }}>
-          <DreamGrid
+          <Grid
             size={size}
             images={images}
             minimumRowHeight={180}

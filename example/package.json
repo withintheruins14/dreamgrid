@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dreamgrid": "link:..",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.25.0",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-prism": "^4.3.2",

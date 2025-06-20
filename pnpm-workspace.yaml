@@ -1,2 +1,4 @@
+pnpmfile: node_modules/.pnpm-config/@pnpm/types-fixer/pnpmfile.cjs
 packages:
   - 'packages/**'
+  

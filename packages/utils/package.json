@@ -1,0 +1,42 @@
+{
+  "name": "@dreamgrid/utils",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./get-item-size": {
+      "types": "./src/get-item-size.ts",
+      "default": "./dist/get-item-size.js"
+    },
+    "./make-next-row": {
+      "types": "./src/make-next-row.ts",
+      "default": "./dist/make-next-row.js"
+    },
+    "./row": {
+      "types": "./src/row.ts",
+      "default": "./dist/row.js"
+    },
+    "./make-rows": {
+      "types": "./src/make-rows.ts",
+      "default": "./dist/make-rows.js"
+    },
+    "./scale-dimension": {
+      "types": "./src/scale-dimension.ts",
+      "default": "./dist/scale-dimension.js"
+    },
+    "./factor-to-fit-in-minimum-row-height": {
+      "types": "./src/factor-to-fit-in-minimum-row-height.ts",
+      "default": "./dist/factor-to-fit-in-minimum-row-height.js"
+    },
+    "./width-at-minimum-row-height": {
+      "types": "./src/width-at-minimum-row-height.ts",
+      "default": "./dist/width-at-minimum-row-height.js"
+    }
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "@dreamgrid/typescript-config": "workspace:*"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@dreamgrid/react",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./use-grid": {
+      "types": "./src/use-grid.ts",
+      "default": "./dist/use-grid.js"
+    }
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "@dreamgrid/typescript-config": "workspace:*"
+  },
+  "dependencies": {
+    "@dreamgrid/utils": "workspace:*",
+    "react": "^16.4.1"
+  }
+}

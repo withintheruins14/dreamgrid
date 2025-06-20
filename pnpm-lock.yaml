@@ -17,30 +17,30 @@ importers:
 
   packages/react:
     dependencies:
-      '@dreamgrid/utils':
-        specifier: workspace:*
-        version: link:../utils
       react:
         specifier: ^16.4.1
         version: 16.14.0
-    devDependencies:
-      '@dreamgrid/typescript-config':
+      utils:
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../utils
+    devDependencies:
       typescript:
         specifier: latest
         version: 5.8.3
+      typescript-config:
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/typescript-config: {}
 
   packages/utils:
     devDependencies:
-      '@dreamgrid/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       typescript:
         specifier: latest
         version: 5.8.3
+      typescript-config:
+        specifier: workspace:*
+        version: link:../typescript-config
 
 packages:
 

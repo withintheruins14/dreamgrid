@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { makeRows } from '@dreamgrid/utils/make-rows';
+import { makeRows } from 'utils/make-rows';
 export function useGrid(images, minimumRowHeight, maximumRowHeight, width) {
     const rows = useMemo(() => {
         const hasWidth = Boolean(width);

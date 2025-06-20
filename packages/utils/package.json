@@ -1,5 +1,5 @@
 {
-  "name": "@dreamgrid/utils",
+  "name": "utils",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",
@@ -37,6 +37,6 @@
   },
   "devDependencies": {
     "typescript": "latest",
-    "@dreamgrid/typescript-config": "workspace:*"
+    "typescript-config": "workspace:*"
   }
 }

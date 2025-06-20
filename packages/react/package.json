@@ -1,5 +1,5 @@
 {
-  "name": "@dreamgrid/react",
+  "name": "react",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",
@@ -13,10 +13,10 @@
   },
   "devDependencies": {
     "typescript": "latest",
-    "@dreamgrid/typescript-config": "workspace:*"
+    "typescript-config": "workspace:*"
   },
   "dependencies": {
-    "@dreamgrid/utils": "workspace:*",
+    "utils": "workspace:*",
     "react": "^16.4.1"
   }
 }

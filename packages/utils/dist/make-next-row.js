@@ -1,5 +1,5 @@
-import { row } from '@dreamgrid/utils/row';
-import { widthAtMinimumRowHeight } from '@dreamgrid/utils/width-at-minimum-row-height';
+import { row } from 'utils/row';
+import { widthAtMinimumRowHeight } from 'utils/width-at-minimum-row-height';
 export const makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeight) => {
     let remainingRowWidth = width;
     const accumulatedRowDimensions = [];

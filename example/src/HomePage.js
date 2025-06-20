@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Grid } from 'dreamgrid';
+import { Grid, useGrid } from 'dreamgrid';
 import ReactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 import { Link } from 'react-router-dom';
 import images from './images.js';
+
+import hookedGrid from './hooked.js';
 
 const mainStyles = {
   display: 'flex',
@@ -20,11 +22,9 @@ const rightStyles = {
   width: '100%',
   overflowY: 'auto',
 };
-// import { staticGrid, responsiveGrid } from './dictionary.js';
-// import PrismCode from 'react-prism';
+
 require('prismjs');
 require('prismjs/themes/prism.css');
-
 
 export default class HomePage extends Component {
 
@@ -72,6 +72,7 @@ export default class HomePage extends Component {
     clearInterval(this.animation);
   }
 
+
   render() {
     return (
       <main style={mainStyles}>
@@ -106,11 +107,12 @@ export default class HomePage extends Component {
                         images={images}
                         minimumRowHeight={180}
                         maximumRowHeight={350}
-                        renderItem={(style, image) => {
+                        renderItem={({ height, width, url }) => {
                           return (
                             <img
-                              src={image.url}
-                              style={style}
+                              height={height}
+                              width={width}
+                              src={url}
                             />
                           );
                         }}

@@ -12,13 +12,17 @@ const Row = memo(({ data, index, style }) => {
       key={index + rows[index].contents.length}
       style={{
         ...style,
-        height: rows[index].rowHeight
+        height: rows[index].rowHeight,
       }}
     >
       {
-        rows[index].contents.map((content, i) => {
-          const image = images[itemsBelowIndex + i]
-          return renderItem(content, image)
+        rows[index].contents.map(({ scale }, i) => {
+          const { height, width, url } = images[itemsBelowIndex + i]
+          return renderItem({
+            height: height * scale,
+            width: width * scale,
+            url,
+          })
         })
       }
     </div>

@@ -1,4 +1,4 @@
-import React__default, { memo, Component, createRef } from 'react';
+import React, { memo, useRef, Component, createRef } from 'react';
 import { areEqual, VariableSizeList } from 'react-window';
 import PropTypes from 'prop-types';
 
@@ -79,7 +79,7 @@ var Row = memo(function (_ref) {
   }).reduce(function (a, b) {
     return a + b;
   }, 0);
-  return React__default.createElement(
+  return React.createElement(
     'div',
     {
       key: index + rows[index].contents.length,
@@ -87,14 +87,125 @@ var Row = memo(function (_ref) {
         height: rows[index].rowHeight
       })
     },
-    rows[index].contents.map(function (content, i) {
-      var image = images[itemsBelowIndex + i];
-      return renderItem(content, image);
+    rows[index].contents.map(function (_ref2, i) {
+      var scale = _ref2.scale;
+      var _images = images[itemsBelowIndex + i],
+          height = _images.height,
+          width = _images.width,
+          url = _images.url;
+
+      return renderItem({
+        height: height * scale,
+        width: width * scale,
+        url: url
+      });
     })
   );
 }, areEqual);
 
-var useGrid = function useGrid() {};
+var getItemSize = function getItemSize(rows, index) {
+  return rows[index].rowHeight;
+};
+
+var scaleDimension = function scaleDimension(dimension, scale) {
+  return { dimension: dimension, scale: scale };
+};
+
+var widthAtMinimumRowHeight = function widthAtMinimumRowHeight(dimension, minimumRowHeight) {
+  return factorToFitInMinimumRowHeight(dimension, minimumRowHeight) * dimension.x;
+};
+
+var factorToFitInMinimumRowHeight = function factorToFitInMinimumRowHeight(dimension, minimumRowHeight) {
+  return minimumRowHeight / dimension.y;
+};
+
+var makeDimensions = function makeDimensions(images) {
+  return images.filter(function (_ref) {
+    var width = _ref.width,
+        height = _ref.height;
+    return width && height;
+  }).map(function (image) {
+    return _extends({}, getImageDimensions(image));
+  });
+};
+
+var makeRows = function makeRows(accumulatedRows, dimensions, width, minimumRowHeight, maximumRowHeight) {
+  var _makeNextRow = makeNextRow(dimensions, width, minimumRowHeight, maximumRowHeight),
+      next = _makeNextRow.next,
+      remaining = _makeNextRow.remaining;
+
+  accumulatedRows.push(next);
+  if (remaining.length > 0) {
+    accumulatedRows.concat(makeRows(accumulatedRows, dimensions, width, minimumRowHeight, maximumRowHeight));
+  }
+  return accumulatedRows;
+};
+
+var makeNextRow = function makeNextRow(remainingDimensions, width, minimumRowHeight, maximumRowHeight) {
+  var remainingRowWidth = width;
+  var accumulatedRowDimensions = [];
+  while (remainingDimensions.length > 0 && remainingRowWidth > widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight)) {
+    remainingRowWidth -= widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight);
+    accumulatedRowDimensions.push(remainingDimensions.shift());
+  }
+
+  var widthsAtMinimumHeight = accumulatedRowDimensions.map(function (d) {
+    return widthAtMinimumRowHeight(d, minimumRowHeight);
+  });
+  var totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce(function (a, b) {
+    return a + b;
+  }, 0);
+  var widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
+  return {
+    next: row(accumulatedRowDimensions, widthScaleFactor, width, minimumRowHeight),
+    remaining: remainingDimensions
+  };
+};
+
+var row = function row(unscaledContents, scaleDueToHeight, width, minimumRowHeight) {
+  var scaledContents = unscaledContents.map(function (unscaledDimension) {
+    var factor = factorToFitInMinimumRowHeight(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
+    return scaleDimension(unscaledDimension, factor);
+  });
+
+  var remainingWhitespace = width - scaledContents.map(function (scaledContent) {
+    return scaledContent.dimension.x * scaledContent.scale;
+  }).reduce(function (cur, prev) {
+    return cur + prev;
+  }, 0);
+
+  return {
+    contents: scaledContents,
+    rowHeight: minimumRowHeight * scaleDueToHeight,
+    horizontalWhitespace: remainingWhitespace
+  };
+};
+
+var getImageDimensions = function getImageDimensions(image) {
+  var width = image.width,
+      height = image.height;
+
+  switch (image.image_orientation) {
+    case 'LeftBottom':
+      return {
+        x: height,
+        y: width
+      };
+    default:
+      return {
+        x: width,
+        y: height
+      };
+  }
+};
+
+var useGrid = function useGrid() {
+  var rows = useRef();
+  return {
+    renderRow: React.createElement(Row, null),
+    itemData: itemData
+  };
+};
 
 var minimumRowHeight = void 0,
     maximumRowHeight = void 0;
@@ -106,107 +217,6 @@ var DreamGrid = function (_Component) {
     classCallCheck(this, DreamGrid);
 
     var _this = possibleConstructorReturn(this, (DreamGrid.__proto__ || Object.getPrototypeOf(DreamGrid)).call(this, props));
-
-    _this.row = function (unscaledContents, scaleDueToHeight) {
-      var width = _this.props.size.width;
-      var scaledContents = unscaledContents.map(function (unscaledDimension) {
-        var factor = _this.factorToFitInMinimumRowHeight(unscaledDimension) * scaleDueToHeight;
-        return _this.scaleDimension(unscaledDimension, factor);
-      });
-
-      var remainingWhitespace = width - scaledContents.map(function (scaledContent) {
-        return scaledContent.dimension.x * scaledContent.scale;
-      }).reduce(function (cur, prev) {
-        return cur + prev;
-      }, 0);
-
-      return {
-        contents: scaledContents,
-        rowHeight: minimumRowHeight * scaleDueToHeight,
-        horizontalWhitespace: remainingWhitespace
-      };
-    };
-
-    _this.makeNextRow = function (remainingDimensions) {
-      var width = _this.props.size.width;
-      var remainingRowWidth = width;
-      var accumulatedRowDimensions = [];
-      while (remainingDimensions.length > 0 && remainingRowWidth > _this.widthAtMinimumRowHeight(remainingDimensions[0])) {
-        remainingRowWidth -= _this.widthAtMinimumRowHeight(remainingDimensions[0]);
-        accumulatedRowDimensions.push(remainingDimensions.shift());
-      }
-
-      var widthsAtMinimumHeight = accumulatedRowDimensions.map(function (d) {
-        return _this.widthAtMinimumRowHeight(d);
-      });
-      var totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce(function (a, b) {
-        return a + b;
-      }, 0);
-      var widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
-      return {
-        next: _this.row(accumulatedRowDimensions, widthScaleFactor),
-        remaining: remainingDimensions
-      };
-    };
-
-    _this.makeRows = function (accumulatedRows, dimensions) {
-      var _this$makeNextRow = _this.makeNextRow(dimensions),
-          next = _this$makeNextRow.next,
-          remaining = _this$makeNextRow.remaining;
-
-      accumulatedRows.push(next);
-      if (remaining.length > 0) {
-        accumulatedRows.concat(_this.makeRows(accumulatedRows, remaining));
-      }
-      return accumulatedRows;
-    };
-
-    _this.widthAtMinimumRowHeight = function (dimension) {
-      return _this.factorToFitInMinimumRowHeight(dimension) * dimension.x;
-    };
-
-    _this.factorToFitInMinimumRowHeight = function (dimension) {
-      return minimumRowHeight / dimension.y;
-    };
-
-    _this.getImageDimensions = function (image) {
-      var width = image.width,
-          height = image.height;
-
-      switch (image.image_orientation) {
-        case 'LeftBottom':
-          return {
-            x: height,
-            y: width
-          };
-        default:
-          return {
-            x: width,
-            y: height
-          };
-      }
-    };
-
-    _this.makeDimensions = function () {
-      var images = _this.props.images;
-
-      return images.filter(function (_ref) {
-        var width = _ref.width,
-            height = _ref.height;
-
-        return width && height;
-      }).map(function (image) {
-        var _this$getImageDimensi = _this.getImageDimensions(image),
-            x = _this$getImageDimensi.x,
-            y = _this$getImageDimensi.y;
-
-        return _this.dimension(x, y);
-      });
-    };
-
-    _this.getItemSize = function (index) {
-      return _this.rows[index].rowHeight;
-    };
 
     minimumRowHeight = props.minimumRowHeight;
     maximumRowHeight = props.maximumRowHeight;
@@ -237,17 +247,18 @@ var DreamGrid = function (_Component) {
       var height = size.height,
           width = size.width;
 
-      var imageDimensions = this.makeDimensions();
-      this.rows = this.makeRows([], imageDimensions);
-      var itemData = { rows: this.rows, images: images, renderItem: renderItem };
-      return React__default.createElement(
+      var rows = makeRows([], makeDimensions(images), width, minimumRowHeight, maximumRowHeight);
+      var itemData = { rows: rows, images: images, renderItem: renderItem };
+      return React.createElement(
         VariableSizeList,
         {
           height: height,
           width: width,
           itemData: itemData,
-          itemSize: this.getItemSize,
-          itemCount: this.rows.length,
+          itemSize: function itemSize(index) {
+            return getItemSize(rows, index);
+          },
+          itemCount: rows.length,
           ref: function ref(node) {
             _this2.list = node;
           }
@@ -263,7 +274,7 @@ DreamGrid.propTypes = {
   minimumRowHeight: PropTypes.number,
   maximumRowHeight: PropTypes.number,
   size: PropTypes.objectOf(PropTypes.number),
-  images: PropTypes.object,
+  images: PropTypes.array,
   renderItem: PropTypes.func
 };
 

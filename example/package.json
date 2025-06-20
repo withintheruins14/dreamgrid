@@ -9,7 +9,7 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
-    "dreamgrid": "0.1.36",
+    "dreamgrid": "link:..",
     "prismjs": "^1.20.0",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",

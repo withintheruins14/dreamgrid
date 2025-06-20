@@ -35,10 +35,11 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
-    "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "x -d example/build"
+    "start": "react-scripts start",
+    "prepare": "pnpm build",
+    "predeploy": "cd example && pnpm install && pnpm build",
+    "deploy": "x -d example/build",
+    "preinstall": "npx only-allow pnpm"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",

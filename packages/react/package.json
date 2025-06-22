@@ -1,10 +1,14 @@
 {
+  "version": "0.0.1",
   "name": "react",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc"
+    "build": "tsup src/index.ts --format cjs,esm --dts"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./use-grid": {
       "types": "./src/use-grid.ts",
@@ -18,5 +22,6 @@
   "dependencies": {
     "utils": "workspace:*",
     "react": "^16.4.1"
-  }
+  },
+  "files": ["dist/**"]
 }

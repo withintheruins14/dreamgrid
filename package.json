@@ -1,9 +1,10 @@
 {
   "name": "dreamgrid",
-  "version": "0.1.37",
+  "version": "0.1.38",
   "description": "responsive react image grid component that respects aspect ratios",
   "author": "Phillip Jacowski",
   "license": "MIT",
+  "private": false,
   "keywords": [
     "aspect ratio",
     "grid",
@@ -24,23 +25,14 @@
     "type": "git",
     "url": "https://github.com/withintheruins14/dreamgrid"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "packageManager": "pnpm@10.0.0",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
   },
-  "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
-  },
   "devDependencies": {
     "gh-pages": "^3.0.0",
+    "tsup": "^8.5.0",
     "turbo": "^2.5.4"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

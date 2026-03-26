@@ -26,7 +26,7 @@ module.exports = __toCommonJS(index_exports);
 
 // src/use-grid.tsx
 var import_react = require("react");
-var import_make_rows = require("utils/make-rows");
+var import_make_rows = require("@dreamgrid/utils/make-rows");
 function useGrid(images, minimumRowHeight, maximumRowHeight, width) {
   const rows = (0, import_react.useMemo)(
     () => {

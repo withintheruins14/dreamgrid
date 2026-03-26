@@ -1,5 +1,5 @@
-import { factorToFitInMinimumRowHeight } from 'utils/factor-to-fit-in-minimum-row-height'
-import { scaleDimension } from 'utils/scale-dimension'
+import { factorToFitInMinimumRowHeight } from '@dreamgrid/utils/factor-to-fit-in-minimum-row-height'
+import { scaleDimension } from '@dreamgrid/utils/scale-dimension'
 
 export const row = (unscaledContents: any[], scaleDueToHeight: number, width: number, minimumRowHeight: number) => {
   const scaledContents = unscaledContents.map((unscaledDimension: any) => {

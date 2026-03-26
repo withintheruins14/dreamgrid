@@ -1,1 +1,6 @@
-export const getItemSize = (rows, index) => (rows?.[index]?.rowHeight);
+import {
+  getItemSize
+} from "./chunk-UQUYSJ5D.js";
+export {
+  getItemSize
+};

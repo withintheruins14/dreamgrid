@@ -1,1 +1,6 @@
-export const scaleDimension = (dimension, scale) => ({ dimension, scale });
+import {
+  scaleDimension
+} from "./chunk-GMJQ5YNH.js";
+export {
+  scaleDimension
+};

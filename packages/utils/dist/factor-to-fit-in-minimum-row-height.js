@@ -1,3 +1,6 @@
-export const factorToFitInMinimumRowHeight = (dimension, minimumRowHeight) => {
-    return minimumRowHeight / dimension.height;
+import {
+  factorToFitInMinimumRowHeight
+} from "./chunk-RFG4H3P3.js";
+export {
+  factorToFitInMinimumRowHeight
 };

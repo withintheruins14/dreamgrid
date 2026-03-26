@@ -1,2 +1,7 @@
-import { factorToFitInMinimumRowHeight } from 'utils/factor-to-fit-in-minimum-row-height';
-export const widthAtMinimumRowHeight = (dimension, minimumRowHeight) => (factorToFitInMinimumRowHeight(dimension, minimumRowHeight) * dimension.width);
+import {
+  widthAtMinimumRowHeight
+} from "./chunk-ZOJRGKJD.js";
+import "./chunk-BGHW3Y3Y.js";
+export {
+  widthAtMinimumRowHeight
+};

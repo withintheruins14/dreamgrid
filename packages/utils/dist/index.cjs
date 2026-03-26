@@ -24,9 +24,9 @@ __export(index_exports, {
   getItemSize: () => getItemSize,
   makeNextRow: () => makeNextRow,
   makeRows: () => makeRows,
-  row: () => row2,
-  scaleDimension: () => scaleDimension2,
-  widthAtMinimumRowHeight: () => widthAtMinimumRowHeight2
+  row: () => row3,
+  scaleDimension: () => scaleDimension4,
+  widthAtMinimumRowHeight: () => widthAtMinimumRowHeight3
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -38,15 +38,13 @@ var factorToFitInMinimumRowHeight = (dimension, minimumRowHeight) => {
 // src/get-item-size.ts
 var getItemSize = (rows, index) => rows?.[index]?.rowHeight;
 
-// dist/factor-to-fit-in-minimum-row-height.js
+// dist/chunk-BGHW3Y3Y.js
 var factorToFitInMinimumRowHeight2 = (dimension, minimumRowHeight) => {
   return minimumRowHeight / dimension.height;
 };
 
-// dist/scale-dimension.js
+// dist/chunk-YJ7PA23E.js
 var scaleDimension = (dimension, scale) => ({ dimension, scale });
-
-// dist/row.js
 var row = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
   const scaledContents = unscaledContents.map((unscaledDimension) => {
     const factor = factorToFitInMinimumRowHeight2(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
@@ -62,7 +60,7 @@ var row = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
   };
 };
 
-// dist/width-at-minimum-row-height.js
+// dist/chunk-ZOJRGKJD.js
 var widthAtMinimumRowHeight = (dimension, minimumRowHeight) => factorToFitInMinimumRowHeight2(dimension, minimumRowHeight) * dimension.width;
 
 // src/make-next-row.ts
@@ -84,21 +82,40 @@ var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeigh
   };
 };
 
-// dist/make-next-row.js
+// dist/chunk-FTY62T32.js
+var factorToFitInMinimumRowHeight3 = (dimension, minimumRowHeight) => {
+  return minimumRowHeight / dimension.height;
+};
+var scaleDimension2 = (dimension, scale) => ({ dimension, scale });
+var row2 = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
+  const scaledContents = unscaledContents.map((unscaledDimension) => {
+    const factor = factorToFitInMinimumRowHeight3(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
+    return scaleDimension2(unscaledDimension, factor);
+  });
+  const remainingWhitespace = width - scaledContents.map((scaledContent) => scaledContent.dimension.width * scaledContent.scale).reduce((cur, prev) => {
+    return cur + prev;
+  }, 0);
+  return {
+    contents: scaledContents,
+    rowHeight: minimumRowHeight * scaleDueToHeight,
+    horizontalWhitespace: remainingWhitespace
+  };
+};
+var widthAtMinimumRowHeight2 = (dimension, minimumRowHeight) => factorToFitInMinimumRowHeight3(dimension, minimumRowHeight) * dimension.width;
 var makeNextRow2 = (remainingDimensions, width, minimumRowHeight, maximumRowHeight) => {
   let remainingRowWidth = width;
   const accumulatedRowDimensions = [];
-  while (remainingDimensions.length > 0 && remainingRowWidth > widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight)) {
-    remainingRowWidth -= widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight);
+  while (remainingDimensions.length > 0 && remainingRowWidth > widthAtMinimumRowHeight2(remainingDimensions[0], minimumRowHeight)) {
+    remainingRowWidth -= widthAtMinimumRowHeight2(remainingDimensions[0], minimumRowHeight);
     accumulatedRowDimensions.push(remainingDimensions.shift());
   }
-  const widthsAtMinimumHeight = accumulatedRowDimensions.map((d) => widthAtMinimumRowHeight(d, minimumRowHeight));
+  const widthsAtMinimumHeight = accumulatedRowDimensions.map((d) => widthAtMinimumRowHeight2(d, minimumRowHeight));
   const totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce((a, b) => {
     return a + b;
   }, 0);
   const widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
   return {
-    next: row(accumulatedRowDimensions, widthScaleFactor, width, minimumRowHeight),
+    next: row2(accumulatedRowDimensions, widthScaleFactor, width, minimumRowHeight),
     remaining: remainingDimensions
   };
 };
@@ -113,11 +130,19 @@ var makeRows = (accumulatedRows, dimensions, width, minimumRowHeight, maximumRow
   return accumulatedRows;
 };
 
+// dist/chunk-RFG4H3P3.js
+var factorToFitInMinimumRowHeight4 = (dimension, minimumRowHeight) => {
+  return minimumRowHeight / dimension.height;
+};
+
+// dist/chunk-GMJQ5YNH.js
+var scaleDimension3 = (dimension, scale) => ({ dimension, scale });
+
 // src/row.ts
-var row2 = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
+var row3 = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
   const scaledContents = unscaledContents.map((unscaledDimension) => {
-    const factor = factorToFitInMinimumRowHeight2(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
-    return scaleDimension(unscaledDimension, factor);
+    const factor = factorToFitInMinimumRowHeight4(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
+    return scaleDimension3(unscaledDimension, factor);
   });
   const remainingWhitespace = width - scaledContents.map((scaledContent) => scaledContent.dimension.width * scaledContent.scale).reduce((cur, prev) => {
     return cur + prev;
@@ -130,10 +155,10 @@ var row2 = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
 };
 
 // src/scale-dimension.ts
-var scaleDimension2 = (dimension, scale) => ({ dimension, scale });
+var scaleDimension4 = (dimension, scale) => ({ dimension, scale });
 
 // src/width-at-minimum-row-height.ts
-var widthAtMinimumRowHeight2 = (dimension, minimumRowHeight) => factorToFitInMinimumRowHeight2(dimension, minimumRowHeight) * dimension.width;
+var widthAtMinimumRowHeight3 = (dimension, minimumRowHeight) => factorToFitInMinimumRowHeight4(dimension, minimumRowHeight) * dimension.width;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   factorToFitInMinimumRowHeight,

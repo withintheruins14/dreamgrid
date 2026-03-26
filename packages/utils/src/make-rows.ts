@@ -1,4 +1,4 @@
-import { makeNextRow } from 'utils/make-next-row';
+import { makeNextRow } from '@dreamgrid/utils/make-next-row';
 
 export const makeRows = (accumulatedRows: { contents: any; rowHeight: number; horizontalWhitespace: number }[], dimensions: any, width: any, minimumRowHeight: any, maximumRowHeight: any) => {
   const { next, remaining } = makeNextRow(dimensions, width, minimumRowHeight, maximumRowHeight)

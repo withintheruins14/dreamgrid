@@ -3,21 +3,17 @@ import { Analytics } from '@vercel/analytics/react'
 import { grid } from 'dreamgrid'
 
 const images = [
-  { width: 4000, height: 3000, color: '#e74c3c' },
-  { width: 3000, height: 4000, color: '#3498db' },
-  { width: 5000, height: 2500, color: '#2ecc71' },
-  { width: 3200, height: 3200, color: '#f39c12' },
-  { width: 4800, height: 2400, color: '#9b59b6' },
-  { width: 2800, height: 4200, color: '#1abc9c' },
-  { width: 5200, height: 2600, color: '#e67e22' },
-  { width: 3600, height: 2700, color: '#2980b9' },
-  { width: 4400, height: 3300, color: '#c0392b' },
-  { width: 3000, height: 5000, color: '#27ae60' },
-  { width: 4200, height: 2100, color: '#8e44ad' },
-  { width: 3800, height: 2850, color: '#d35400' },
-  { width: 2600, height: 3900, color: '#16a085' },
-  { width: 5000, height: 3000, color: '#c0392b' },
-  { width: 3400, height: 4500, color: '#2c3e50' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7837/46852208034_1f768a633c_b_d.jpg' },
+  { width: 679,  height: 1024, url: 'https://live.staticflickr.com/7856/46660570565_dd7cb62cd0_b_d.jpg' },
+  { width: 679,  height: 1024, url: 'https://live.staticflickr.com/7820/40609973763_12f1b6b419_b_d.jpg' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7835/32633607057_5bc8364604_b_d.jpg' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7846/47576131171_19e5a0bdbc_b_d.jpg' },
+  { width: 679,  height: 1024, url: 'https://live.staticflickr.com/7908/32633606977_16e48d70df_b_d.jpg' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7827/40609972083_827edcf11d_b_d.jpg' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7819/32633607187_23a906a20d_b_d.jpg' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7866/33699205638_4fd36c940c_b_d.jpg' },
+  { width: 679,  height: 1024, url: 'https://live.staticflickr.com/7903/32633606767_1cda0b9f60_b_d.jpg' },
+  { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7922/40609973373_e585031e3e_b_d.jpg' },
 ]
 
 export function App() {
@@ -47,26 +43,20 @@ export function App() {
           <div key={rowIndex} style={{ display: 'flex', marginBottom: 4, gap: 4 }}>
             {row.contents.map((item, itemIndex) => {
               const img = images[getImageIndex(rows, rowIndex, itemIndex)]
-              const scaledWidth = item.dimension.width * item.scale
-              const scaledHeight = item.dimension.height * item.scale
               return (
-                <div
+                <img
                   key={itemIndex}
+                  src={img?.url}
+                  alt=""
+                  loading="lazy"
                   style={{
-                    width: scaledWidth,
-                    height: scaledHeight,
-                    backgroundColor: img?.color ?? '#333',
+                    width: item.dimension.width * item.scale,
+                    height: item.dimension.height * item.scale,
                     borderRadius: 4,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 14,
-                    color: 'rgba(255,255,255,0.7)',
                     flexShrink: 0,
+                    display: 'block',
                   }}
-                >
-                  {Math.round(item.dimension.width)}x{Math.round(item.dimension.height)}
-                </div>
+                />
               )
             })}
           </div>

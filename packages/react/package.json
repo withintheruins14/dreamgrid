@@ -1,35 +1,42 @@
 {
-  "version": "0.0.2",
-  "name": "@dreamgrid/react",
+  "version": "0.1.39",
+  "name": "dreamgrid",
   "type": "module",
+  "description": "responsive image grid that respects aspect ratios",
+  "author": "Phillip Jacowski",
+  "license": "MIT",
+  "homepage": "https://dreamgrid-rose.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/withintheruins14/dreamgrid"
+  },
+  "keywords": [
+    "aspect ratio",
+    "grid",
+    "responsive",
+    "ratio",
+    "image",
+    "masonry",
+    "layout"
+  ],
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsup src/index.ts src/use-grid.tsx --format cjs,esm && tsc --declaration --emitDeclarationOnly --outDir dist"
+    "build": "tsup"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./use-grid": {
-      "types": "./dist/use-grid.d.ts",
-      "default": "./dist/use-grid.js"
     }
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
+    "@dreamgrid/utils": "workspace:*",
     "typescript": "latest",
     "typescript-config": "workspace:*"
-  },
-  "dependencies": {
-    "@dreamgrid/utils": "workspace:*"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "files": [
     "dist/**"

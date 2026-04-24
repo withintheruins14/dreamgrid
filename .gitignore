@@ -16,3 +16,4 @@
 
 .pnpm-store/**
 .turbo
+.vercel

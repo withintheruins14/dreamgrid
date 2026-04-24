@@ -1,5 +1,6 @@
-import { useRef, useState, useEffect } from 'react'
-import { useGrid } from '@dreamgrid/react'
+import { useRef, useState, useEffect, useMemo } from 'react'
+import { Analytics } from '@vercel/analytics/react'
+import { grid } from 'dreamgrid'
 
 const images = [
   { width: 4000, height: 3000, color: '#e74c3c' },
@@ -32,18 +33,19 @@ export function App() {
     return () => observer.disconnect()
   }, [])
 
-  const rows = useGrid(images, 200, 400, width)
+  const rows = useMemo(() => grid(images, 200, 400, width), [width])
 
   return (
     <div style={{ padding: 24 }}>
+      <Analytics />
       <h1 style={{ marginBottom: 8 }}>dreamgrid</h1>
       <p style={{ marginBottom: 24, color: '#888' }}>
         Responsive image grid that respects aspect ratios
       </p>
       <div ref={containerRef}>
-        {rows.map((row: any, rowIndex: number) => (
+        {rows.map((row, rowIndex) => (
           <div key={rowIndex} style={{ display: 'flex', marginBottom: 4, gap: 4 }}>
-            {row.contents.map((item: any, itemIndex: number) => {
+            {row.contents.map((item, itemIndex) => {
               const img = images[getImageIndex(rows, rowIndex, itemIndex)]
               const scaledWidth = item.dimension.width * item.scale
               const scaledHeight = item.dimension.height * item.scale
@@ -74,7 +76,7 @@ export function App() {
   )
 }
 
-function getImageIndex(rows: any[], rowIndex: number, itemIndex: number): number {
+function getImageIndex(rows: { contents: unknown[] }[], rowIndex: number, itemIndex: number): number {
   let index = 0
   for (let r = 0; r < rowIndex; r++) {
     index += rows[r].contents.length

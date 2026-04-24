@@ -1,5 +1,5 @@
 {
-  "version": "0.1.40",
+  "version": "0.1.41",
   "name": "dreamgrid",
   "type": "module",
   "description": "responsive image grid that respects aspect ratios",

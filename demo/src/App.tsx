@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { Analytics } from '@vercel/analytics/react'
-import { grid } from 'dreamgrid'
+import { getGrid } from 'dreamgrid'
 
 const images = [
   { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7837/46852208034_1f768a633c_b_d.jpg' },
@@ -29,7 +29,7 @@ export function App() {
     return () => observer.disconnect()
   }, [])
 
-  const rows = useMemo(() => grid(images, 200, 400, width), [width])
+  const rows = useMemo(() => getGrid(images, 200, 400, width), [width])
 
   return (
     <div style={{ padding: 24 }}>

@@ -45,10 +45,10 @@ var makeRows = (accumulatedRows, dimensions, width, minimumRowHeight, maximumRow
 };
 
 // src/index.ts
-function grid(items, minimumRowHeight, maximumRowHeight, width) {
+function getGrid(items, minimumRowHeight, maximumRowHeight, width) {
   if (!width) return [];
   return makeRows([], [...items], width, minimumRowHeight, maximumRowHeight);
 }
 export {
-  grid
+  getGrid
 };

@@ -20,7 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
-  grid: () => grid
+  getGrid: () => getGrid
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -71,11 +71,11 @@ var makeRows = (accumulatedRows, dimensions, width, minimumRowHeight, maximumRow
 };
 
 // src/index.ts
-function grid(items, minimumRowHeight, maximumRowHeight, width) {
+function getGrid(items, minimumRowHeight, maximumRowHeight, width) {
   if (!width) return [];
   return makeRows([], [...items], width, minimumRowHeight, maximumRowHeight);
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  grid
+  getGrid
 });

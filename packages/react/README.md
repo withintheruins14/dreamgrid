@@ -26,10 +26,10 @@ npm install --save dreamgrid
 
 ## Usage
 
-`grid` is a pure function. Give it items with aspect ratios, a row-height range, and the container width — it returns the rows, already scaled. You render them however you want.
+`getGrid` is a pure function. Give it items with aspect ratios, a row-height range, and the container width — it returns the rows, already scaled. You render them however you want.
 
 ```ts
-import { grid } from 'dreamgrid'
+import { getGrid } from 'dreamgrid'
 
 const items = [
   // real pixel dimensions or any ratio, e.g. { width: 3, height: 2 }
@@ -38,7 +38,7 @@ const items = [
   { width: 1024, height: 679 },
 ]
 
-const rows = grid(items, 200, 400, 960)
+const rows = getGrid(items, 200, 400, 960)
 // [
 //   { contents: [{ dimension: {width, height}, scale }, ...], rowHeight, horizontalWhitespace },
 //   ...
@@ -51,7 +51,7 @@ Measure the container with a `ResizeObserver` and memoize the result.
 
 ```tsx
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { grid } from 'dreamgrid'
+import { getGrid } from 'dreamgrid'
 
 const images = [
   { width: 1024, height: 679,  url: 'https://live.staticflickr.com/7837/46852208034_1f768a633c_b_d.jpg' },
@@ -70,7 +70,7 @@ export function Gallery() {
     return () => observer.disconnect()
   }, [])
 
-  const rows = useMemo(() => grid(images, 200, 400, width), [width])
+  const rows = useMemo(() => getGrid(images, 200, 400, width), [width])
 
   let i = 0
   return (
@@ -100,7 +100,7 @@ export function Gallery() {
 ## API
 
 ```ts
-grid(
+getGrid(
   items: { width: number; height: number }[],
   minimumRowHeight: number,
   maximumRowHeight: number,
@@ -114,7 +114,7 @@ type Row = {
 }
 ```
 
-If `width` is undefined, `grid` returns `[]` — useful while you're still measuring the container. Multiply each item's `dimension.width` / `dimension.height` by `scale` to get the rendered size.
+If `width` is undefined, `getGrid` returns `[]` — useful while you're still measuring the container. Multiply each item's `dimension.width` / `dimension.height` by `scale` to get the rendered size.
 
 Live demo: [https://dreamgrid-rose.vercel.app](https://dreamgrid-rose.vercel.app)
 

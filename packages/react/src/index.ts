@@ -8,7 +8,7 @@ export type GridRow = {
   horizontalWhitespace: number
 }
 
-export function grid<T extends GridItem>(
+export function getGrid<T extends GridItem>(
   items: T[],
   minimumRowHeight: number,
   maximumRowHeight: number,

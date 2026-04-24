@@ -21,7 +21,6 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var index_exports = {};
 __export(index_exports, {
   factorToFitInMinimumRowHeight: () => factorToFitInMinimumRowHeight,
-  getItemSize: () => getItemSize,
   makeNextRow: () => makeNextRow,
   makeRows: () => makeRows,
   row: () => row3,
@@ -31,12 +30,7 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // src/factor-to-fit-in-minimum-row-height.ts
-var factorToFitInMinimumRowHeight = (dimension, minimumRowHeight) => {
-  return minimumRowHeight / dimension.height;
-};
-
-// src/get-item-size.ts
-var getItemSize = (rows, index) => rows?.[index]?.rowHeight;
+var factorToFitInMinimumRowHeight = (dimension, minimumRowHeight) => minimumRowHeight / dimension.height;
 
 // dist/chunk-BGHW3Y3Y.js
 var factorToFitInMinimumRowHeight2 = (dimension, minimumRowHeight) => {
@@ -71,11 +65,14 @@ var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeigh
     remainingRowWidth -= widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight);
     accumulatedRowDimensions.push(remainingDimensions.shift());
   }
-  const widthsAtMinimumHeight = accumulatedRowDimensions.map((d) => widthAtMinimumRowHeight(d, minimumRowHeight));
-  const totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce((a, b) => {
-    return a + b;
-  }, 0);
-  const widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
+  if (accumulatedRowDimensions.length === 0 && remainingDimensions.length > 0) {
+    accumulatedRowDimensions.push(remainingDimensions.shift());
+  }
+  const totalWidthAtMinimumHeight = accumulatedRowDimensions.reduce(
+    (total, d) => total + widthAtMinimumRowHeight(d, minimumRowHeight),
+    0
+  );
+  const widthScaleFactor = totalWidthAtMinimumHeight === 0 ? maximumRowHeight / minimumRowHeight : Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
   return {
     next: row(accumulatedRowDimensions, widthScaleFactor, width, minimumRowHeight),
     remaining: remainingDimensions
@@ -121,13 +118,14 @@ var makeNextRow2 = (remainingDimensions, width, minimumRowHeight, maximumRowHeig
 };
 
 // src/make-rows.ts
-var makeRows = (accumulatedRows, dimensions, width, minimumRowHeight, maximumRowHeight) => {
-  const { next, remaining } = makeNextRow2(dimensions, width, minimumRowHeight, maximumRowHeight);
-  accumulatedRows.push(next);
-  if (remaining.length > 0) {
-    accumulatedRows.concat(makeRows(accumulatedRows, dimensions, width, minimumRowHeight, maximumRowHeight));
+var makeRows = (dimensions, width, minimumRowHeight, maximumRowHeight) => {
+  const rows = [];
+  const remaining = [...dimensions];
+  while (remaining.length > 0) {
+    const { next } = makeNextRow2(remaining, width, minimumRowHeight, maximumRowHeight);
+    rows.push(next);
   }
-  return accumulatedRows;
+  return rows;
 };
 
 // dist/chunk-RFG4H3P3.js
@@ -144,25 +142,28 @@ var row3 = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
     const factor = factorToFitInMinimumRowHeight4(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
     return scaleDimension3(unscaledDimension, factor);
   });
-  const remainingWhitespace = width - scaledContents.map((scaledContent) => scaledContent.dimension.width * scaledContent.scale).reduce((cur, prev) => {
-    return cur + prev;
-  }, 0);
+  const occupiedWidth = scaledContents.reduce(
+    (total, scaled) => total + scaled.dimension.width * scaled.scale,
+    0
+  );
   return {
     contents: scaledContents,
     rowHeight: minimumRowHeight * scaleDueToHeight,
-    horizontalWhitespace: remainingWhitespace
+    horizontalWhitespace: width - occupiedWidth
   };
 };
 
 // src/scale-dimension.ts
-var scaleDimension4 = (dimension, scale) => ({ dimension, scale });
+var scaleDimension4 = (dimension, scale) => ({
+  dimension,
+  scale
+});
 
 // src/width-at-minimum-row-height.ts
 var widthAtMinimumRowHeight3 = (dimension, minimumRowHeight) => factorToFitInMinimumRowHeight4(dimension, minimumRowHeight) * dimension.width;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   factorToFitInMinimumRowHeight,
-  getItemSize,
   makeNextRow,
   makeRows,
   row,

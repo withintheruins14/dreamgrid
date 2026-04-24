@@ -15,5 +15,5 @@ export function getGrid<T extends GridItem>(
   width?: number,
 ): GridRow[] {
   if (!width) return []
-  return makeRows([], [...items], width, minimumRowHeight, maximumRowHeight)
+  return makeRows(items, width, minimumRowHeight, maximumRowHeight) as GridRow[]
 }

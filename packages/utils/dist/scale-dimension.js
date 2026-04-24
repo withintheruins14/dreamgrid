@@ -1,6 +1,6 @@
 import {
   scaleDimension
-} from "./chunk-GMJQ5YNH.js";
+} from "./chunk-FHZS6VBJ.js";
 export {
   scaleDimension
 };

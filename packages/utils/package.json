@@ -1,10 +1,11 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "@dreamgrid/utils",
   "type": "module",
+  "private": true,
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsup src/index.ts src/get-item-size.ts src/make-next-row.ts src/row.ts src/make-rows.ts src/scale-dimension.ts src/factor-to-fit-in-minimum-row-height.ts src/width-at-minimum-row-height.ts --format cjs,esm && tsc --declaration --emitDeclarationOnly --outDir dist"
+    "build": "tsup src/index.ts src/make-next-row.ts src/row.ts src/make-rows.ts src/scale-dimension.ts src/factor-to-fit-in-minimum-row-height.ts src/width-at-minimum-row-height.ts src/types.ts --format cjs,esm && tsc --declaration --emitDeclarationOnly --outDir dist"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -15,9 +16,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./get-item-size": {
-      "types": "./dist/get-item-size.d.ts",
-      "default": "./dist/get-item-size.js"
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
     },
     "./make-next-row": {
       "types": "./dist/make-next-row.d.ts",

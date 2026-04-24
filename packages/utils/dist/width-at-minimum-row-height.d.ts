@@ -1,3 +1,2 @@
-export declare const widthAtMinimumRowHeight: (dimension: {
-    width: number;
-}, minimumRowHeight: any) => number;
+import type { Dimension } from '@dreamgrid/utils/types';
+export declare const widthAtMinimumRowHeight: (dimension: Dimension, minimumRowHeight: number) => number;

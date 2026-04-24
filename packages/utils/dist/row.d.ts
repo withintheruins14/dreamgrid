@@ -1,8 +1,2 @@
-export declare const row: (unscaledContents: any[], scaleDueToHeight: number, width: number, minimumRowHeight: number) => {
-    contents: {
-        dimension: any;
-        scale: number;
-    }[];
-    rowHeight: number;
-    horizontalWhitespace: number;
-};
+import type { Dimension, Row } from '@dreamgrid/utils/types';
+export declare const row: (unscaledContents: Dimension[], scaleDueToHeight: number, width: number, minimumRowHeight: number) => Row;

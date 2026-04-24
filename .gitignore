@@ -6,6 +6,7 @@
 .pnp.js
 
 /dist
+/demo/dist
 
 # misc
 .DS_Store
@@ -16,4 +17,5 @@
 
 .pnpm-store/**
 .turbo
+coverage
 .vercel

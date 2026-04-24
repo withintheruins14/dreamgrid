@@ -23,7 +23,10 @@ __export(scale_dimension_exports, {
   scaleDimension: () => scaleDimension
 });
 module.exports = __toCommonJS(scale_dimension_exports);
-var scaleDimension = (dimension, scale) => ({ dimension, scale });
+var scaleDimension = (dimension, scale) => ({
+  dimension,
+  scale
+});
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   scaleDimension

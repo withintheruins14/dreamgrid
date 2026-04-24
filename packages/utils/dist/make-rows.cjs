@@ -63,13 +63,14 @@ var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeigh
 };
 
 // src/make-rows.ts
-var makeRows = (accumulatedRows, dimensions, width, minimumRowHeight, maximumRowHeight) => {
-  const { next, remaining } = makeNextRow(dimensions, width, minimumRowHeight, maximumRowHeight);
-  accumulatedRows.push(next);
-  if (remaining.length > 0) {
-    accumulatedRows.concat(makeRows(accumulatedRows, dimensions, width, minimumRowHeight, maximumRowHeight));
+var makeRows = (dimensions, width, minimumRowHeight, maximumRowHeight) => {
+  const rows = [];
+  const remaining = [...dimensions];
+  while (remaining.length > 0) {
+    const { next } = makeNextRow(remaining, width, minimumRowHeight, maximumRowHeight);
+    rows.push(next);
   }
-  return accumulatedRows;
+  return rows;
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

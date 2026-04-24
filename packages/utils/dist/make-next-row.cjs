@@ -57,11 +57,14 @@ var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeigh
     remainingRowWidth -= widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight);
     accumulatedRowDimensions.push(remainingDimensions.shift());
   }
-  const widthsAtMinimumHeight = accumulatedRowDimensions.map((d) => widthAtMinimumRowHeight(d, minimumRowHeight));
-  const totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce((a, b) => {
-    return a + b;
-  }, 0);
-  const widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
+  if (accumulatedRowDimensions.length === 0 && remainingDimensions.length > 0) {
+    accumulatedRowDimensions.push(remainingDimensions.shift());
+  }
+  const totalWidthAtMinimumHeight = accumulatedRowDimensions.reduce(
+    (total, d) => total + widthAtMinimumRowHeight(d, minimumRowHeight),
+    0
+  );
+  const widthScaleFactor = totalWidthAtMinimumHeight === 0 ? maximumRowHeight / minimumRowHeight : Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
   return {
     next: row(accumulatedRowDimensions, widthScaleFactor, width, minimumRowHeight),
     remaining: remainingDimensions

@@ -38,13 +38,14 @@ var row = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
     const factor = factorToFitInMinimumRowHeight(unscaledDimension, minimumRowHeight) * scaleDueToHeight;
     return scaleDimension(unscaledDimension, factor);
   });
-  const remainingWhitespace = width - scaledContents.map((scaledContent) => scaledContent.dimension.width * scaledContent.scale).reduce((cur, prev) => {
-    return cur + prev;
-  }, 0);
+  const occupiedWidth = scaledContents.reduce(
+    (total, scaled) => total + scaled.dimension.width * scaled.scale,
+    0
+  );
   return {
     contents: scaledContents,
     rowHeight: minimumRowHeight * scaleDueToHeight,
-    horizontalWhitespace: remainingWhitespace
+    horizontalWhitespace: width - occupiedWidth
   };
 };
 // Annotate the CommonJS export names for ESM import in node:

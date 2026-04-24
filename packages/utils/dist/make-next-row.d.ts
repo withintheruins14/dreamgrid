@@ -1,11 +1,5 @@
-export declare const makeNextRow: (remainingDimensions: any[], width: number, minimumRowHeight: number, maximumRowHeight: number) => {
-    next: {
-        contents: {
-            dimension: any;
-            scale: number;
-        }[];
-        rowHeight: number;
-        horizontalWhitespace: number;
-    };
-    remaining: any[];
+import type { Dimension, Row } from '@dreamgrid/utils/types';
+export declare const makeNextRow: (remainingDimensions: Dimension[], width: number, minimumRowHeight: number, maximumRowHeight: number) => {
+    next: Row;
+    remaining: Dimension[];
 };

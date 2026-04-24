@@ -1,4 +1,4 @@
-// ../utils/dist/chunk-4YP6TCWM.js
+// dist/chunk-FTY62T32.js
 var factorToFitInMinimumRowHeight = (dimension, minimumRowHeight) => {
   return minimumRowHeight / dimension.height;
 };
@@ -35,6 +35,8 @@ var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeigh
     remaining: remainingDimensions
   };
 };
+
+// src/make-rows.ts
 var makeRows = (dimensions, width, minimumRowHeight, maximumRowHeight) => {
   const rows = [];
   const remaining = [...dimensions];
@@ -45,11 +47,6 @@ var makeRows = (dimensions, width, minimumRowHeight, maximumRowHeight) => {
   return rows;
 };
 
-// src/index.ts
-function getGrid(items, minimumRowHeight, maximumRowHeight, width) {
-  if (!width) return [];
-  return makeRows(items, width, minimumRowHeight, maximumRowHeight);
-}
 export {
-  getGrid
+  makeRows
 };

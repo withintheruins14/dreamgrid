@@ -15,8 +15,16 @@
     "node": ">=8",
     "npm": ">=5"
   },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
+  },
   "devDependencies": {
+    "@vitest/coverage-v8": "^2",
     "tsup": "^8.5.0",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "vitest": "^2"
   }
 }

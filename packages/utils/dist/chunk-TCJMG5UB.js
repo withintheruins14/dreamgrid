@@ -1,7 +1,9 @@
-// ../utils/dist/chunk-4YP6TCWM.js
+// dist/chunk-BGHW3Y3Y.js
 var factorToFitInMinimumRowHeight = (dimension, minimumRowHeight) => {
   return minimumRowHeight / dimension.height;
 };
+
+// dist/chunk-YJ7PA23E.js
 var scaleDimension = (dimension, scale) => ({ dimension, scale });
 var row = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
   const scaledContents = unscaledContents.map((unscaledDimension) => {
@@ -17,7 +19,11 @@ var row = (unscaledContents, scaleDueToHeight, width, minimumRowHeight) => {
     horizontalWhitespace: remainingWhitespace
   };
 };
+
+// dist/chunk-ZOJRGKJD.js
 var widthAtMinimumRowHeight = (dimension, minimumRowHeight) => factorToFitInMinimumRowHeight(dimension, minimumRowHeight) * dimension.width;
+
+// src/make-next-row.ts
 var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeight) => {
   let remainingRowWidth = width;
   const accumulatedRowDimensions = [];
@@ -25,31 +31,20 @@ var makeNextRow = (remainingDimensions, width, minimumRowHeight, maximumRowHeigh
     remainingRowWidth -= widthAtMinimumRowHeight(remainingDimensions[0], minimumRowHeight);
     accumulatedRowDimensions.push(remainingDimensions.shift());
   }
-  const widthsAtMinimumHeight = accumulatedRowDimensions.map((d) => widthAtMinimumRowHeight(d, minimumRowHeight));
-  const totalWidthAtMinimumHeight = widthsAtMinimumHeight.reduce((a, b) => {
-    return a + b;
-  }, 0);
-  const widthScaleFactor = Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
+  if (accumulatedRowDimensions.length === 0 && remainingDimensions.length > 0) {
+    accumulatedRowDimensions.push(remainingDimensions.shift());
+  }
+  const totalWidthAtMinimumHeight = accumulatedRowDimensions.reduce(
+    (total, d) => total + widthAtMinimumRowHeight(d, minimumRowHeight),
+    0
+  );
+  const widthScaleFactor = totalWidthAtMinimumHeight === 0 ? maximumRowHeight / minimumRowHeight : Math.min(width / totalWidthAtMinimumHeight, maximumRowHeight / minimumRowHeight);
   return {
     next: row(accumulatedRowDimensions, widthScaleFactor, width, minimumRowHeight),
     remaining: remainingDimensions
   };
 };
-var makeRows = (dimensions, width, minimumRowHeight, maximumRowHeight) => {
-  const rows = [];
-  const remaining = [...dimensions];
-  while (remaining.length > 0) {
-    const { next } = makeNextRow(remaining, width, minimumRowHeight, maximumRowHeight);
-    rows.push(next);
-  }
-  return rows;
-};
 
-// src/index.ts
-function getGrid(items, minimumRowHeight, maximumRowHeight, width) {
-  if (!width) return [];
-  return makeRows(items, width, minimumRowHeight, maximumRowHeight);
-}
 export {
-  getGrid
+  makeNextRow
 };

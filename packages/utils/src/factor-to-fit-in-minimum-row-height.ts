@@ -1,3 +1,6 @@
-export const factorToFitInMinimumRowHeight = (dimension: { height: number }, minimumRowHeight: number) => {
-  return minimumRowHeight / dimension.height
-}
+import type { Dimension } from '@dreamgrid/utils/types'
+
+export const factorToFitInMinimumRowHeight = (
+  dimension: Pick<Dimension, 'height'>,
+  minimumRowHeight: number,
+): number => minimumRowHeight / dimension.height

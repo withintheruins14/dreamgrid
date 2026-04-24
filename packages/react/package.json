@@ -1,5 +1,5 @@
 {
-  "version": "0.1.39",
+  "version": "0.1.40",
   "name": "dreamgrid",
   "type": "module",
   "description": "responsive image grid that respects aspect ratios",
@@ -21,7 +21,8 @@
   ],
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "prepublishOnly": "cp ../../README.md ./README.md"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

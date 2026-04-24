@@ -39,10 +39,6 @@ const items = [
 ]
 
 const rows = getGrid(items, 200, 400, 960)
-// [
-//   { contents: [{ dimension: {width, height}, scale }, ...], rowHeight, horizontalWhitespace },
-//   ...
-// ]
 ```
 
 ### React
